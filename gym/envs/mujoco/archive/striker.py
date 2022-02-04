@@ -9,7 +9,9 @@ class StrikerEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         self._striked = False
         self._min_strike_dist = np.inf
         self.strike_threshold = 0.1
-        mujoco_env.MujocoEnv.__init__(self, "striker.xml", 5)
+        mujoco_env.MujocoEnv.__init__(
+            self, "striker.xml", 5, mujoco_framework="mujoco_py"
+        )
 
     def step(self, a):
         vec_1 = self.get_body_com("object") - self.get_body_com("tips_arm")

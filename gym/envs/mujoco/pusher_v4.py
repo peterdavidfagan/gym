@@ -6,9 +6,7 @@ from gym.envs.mujoco import mujoco_env
 class PusherEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def __init__(self):
         utils.EzPickle.__init__(self)
-        mujoco_env.MujocoEnv.__init__(
-            self, "pusher.xml", 5, mujoco_framework="mujoco_py"
-        )
+        mujoco_env.MujocoEnv.__init__(self, "pusher.xml", 5)
 
     def step(self, a):
         vec_1 = self.get_body_com("object") - self.get_body_com("tips_arm")
@@ -25,8 +23,7 @@ class PusherEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         return ob, reward, done, dict(reward_dist=reward_dist, reward_ctrl=reward_ctrl)
 
     def viewer_setup(self):
-        self.viewer.cam.trackbodyid = -1
-        self.viewer.cam.distance = 4.0
+        self.viewer.set_free_camera_settings(trackbodyid=-1, distance=4.0)
 
     def reset_model(self):
         qpos = self.init_qpos

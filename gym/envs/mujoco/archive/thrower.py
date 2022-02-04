@@ -8,7 +8,9 @@ class ThrowerEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         utils.EzPickle.__init__(self)
         self._ball_hit_ground = False
         self._ball_hit_location = None
-        mujoco_env.MujocoEnv.__init__(self, "thrower.xml", 5)
+        mujoco_env.MujocoEnv.__init__(
+            self, "thrower.xml", 5, mujoco_framework="mujoco_py"
+        )
 
     def step(self, a):
         ball_xy = self.get_body_com("ball")[:2]

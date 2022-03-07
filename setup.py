@@ -21,7 +21,7 @@ extras = {
 }
 
 # Meta dependency groups.
-nomujoco_blacklist = set(["mujoco", "accept-rom-license", "atari"])
+nomujoco_blacklist = set(["mujoco", "dm_control", "accept-rom-license", "atari"])
 nomujoco_groups = set(extras.keys()) - nomujoco_blacklist
 
 extras["nomujoco"] = list(
